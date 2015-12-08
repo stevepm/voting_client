@@ -64,6 +64,42 @@ describe('reducer', () => {
         tally: {trains: 5}
       }
     }));
-  })
+  });
 
+  it('handles VOTE by setting hasVoted', () => {
+    const state = fromJS({
+      vote: {
+        pair: ['trains', 'days'],
+        tally: {trains: 5}
+      }
+    });
+    const action = {type: 'VOTE', entry: 'trains'};
+    const nextState = reducer(state, action);
+
+    expect(nextState).to.equal(fromJS({
+      vote: {
+        pair: ['trains', 'days'],
+        tally: {trains: 5}
+      },
+      hasVoted: 'trains'
+    }));
+  });
+
+  it('does not set hasVoted for VOTE on invalid entry', () => {
+    const state = fromJS({
+      vote: {
+        pair: ['trains', 'days'],
+        tally: {trains: 5}
+      }
+    });
+    const action = {type: 'VOTE', entry: 'bla'};
+    const nextState = reducer(state, action);
+
+    expect(nextState).to.equal(fromJS({
+      vote: {
+        pair: ['trains', 'days'],
+        tally: {trains: 5}
+      }
+    }));
+  })
 });
