@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js test/**/*.jsx",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js 'test/**/*.jsx'",
     "test:watch": "npm run test -- --watch"
   },
   "keywords": [],
